@@ -66,7 +66,7 @@ int selectPolygon(cv::Mat srcMat, cv::Mat &dstMat)
 int dftDemo() {
 
 
-	cv::Mat srcMat = imread("D:\\1.jpg", 0);
+	cv::Mat srcMat = imread("D:\\2.jpg", 0);
 
 
 	if (srcMat.empty()) {
@@ -143,7 +143,7 @@ int dftDemo() {
 int ifftDemo()
  {
 cv::Mat dst;
- 	cv::Mat src = imread("D:\\1.jpg", 0);
+ 	cv::Mat src = imread("D:\\2.jpg", 0);
 
 
 	int m = getOptimalDFTSize(src.rows); //2,3,5的倍数有更高效率的傅里叶变换 
@@ -278,14 +278,31 @@ minMaxLoc(mag, 0, &maxVal, 0, 0);
 
  }
 
+int mouseROI()
+ {
+ 	cv::Mat srcMat = imread("D:\\2.jpg");
+ 	cv::Mat dstMat;
+
+
+ 	selectPolygon(srcMat, dstMat);
+
+
+	imshow("srcMat", srcMat);
+	imshow("select Area", dstMat);
+ 	waitKey(0);
+
+
+	return 0;
+ }
+
  int main()
  {
 	 //开始计时
 	 double start = static_cast<double>(getTickCount());
 
 	 //dftDemo();
-	 //mouseROI();
-	 ifftDemo();
+	 mouseROI();
+	// ifftDemo();
 	 //结束计时
 	 double time = ((double)getTickCount() - start) / getTickFrequency();
 	 //显示时间
